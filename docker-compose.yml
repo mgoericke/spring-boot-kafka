@@ -1,0 +1,18 @@
+version: '2'
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+  kafka:
+    image: wurstmeister/kafka
+    ports:
+      - "9092:9092"
+    environment:
+      #HOSTNAME_COMMAND: "route -n | awk '/UG[ \t]/{print $$2}'"
+      KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
+      KAFKA_ADVERTISED_PORT: "9092"
+      KAFKA_CREATE_TOPICS: "domainEvents:1:1"
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper
+    volumes:
+      - ./compose-data/kafka/data:/var/lib/kafka/data
