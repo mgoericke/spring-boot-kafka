@@ -1,13 +1,13 @@
 # Kafka
 
-## Where to use Consumer - Producer:
+## when to use Consumer - Producer:
 
 * If there are single consumer , consume message process but not spill to other topic.
 * As point 1 if have just producer producing message the we don't need to Kafka Stream.
 * If consumer message from one Kafka cluster but publish to different Kafka cluster topic. In that case even you can use Kafka Stream but you have to use separate Producer to publish message tp different cluster. Or simply use Kafka Consumer - Producer mechanism.
 * Batch processing - if there is requirement to collect message or kind of batch processing its good to use normal traditional way.
 
-## Where to use Kafka Stream:
+## when to use Kafka Stream:
 
 * If you consume message from one topic , transform and publish to other topic Kafka Stream is best suited.
 * Realtime processing, realtime analytic and Machine learning.
@@ -17,9 +17,10 @@
 
 # Examples
 
+## Kafka Stack
 Add `127.0.0.1 kafka` to /etc/hosts file. 
 
-Start Full Stack
+Start Kafka Stack
 ```
 docker-compose -f docker-compose-ui.yml up -d
 ```
@@ -32,7 +33,35 @@ docker-compose -f docker-compose-ui.yml up -d
 | Kafka-Topics UI  | localhost:8002  |
 | Schema-Registry UI  | localhost:8003  |
 
+## Producer
 
+### Start the producer 
+
+* spring profile "producer"
+* server port 8080
+
+```
+java -jar target/*jar --spring.profiles.active="producer" --server.port=8080
+```
+
+### publish messages 
+
+
+(example users httpie)
+```
+echo '{"id":1, "body": "just a message"}' | http POST :8080/publish
+```
+
+## Consumer
+
+Start the consumer 
+
+* spring profile "consumer"
+* server port 8081
+
+```
+java -jar target/*jar --spring.profiles.active="consumer" --server.port=8081
+```
 
 
 
