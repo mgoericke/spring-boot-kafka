@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.concurrent.ExecutionException;
-
 @Profile("producer")
 @RestController
 @RequiredArgsConstructor
@@ -20,9 +18,8 @@ public class Controller {
     private final DomainEventProducer domainEventProducer;
 
     @PostMapping("/publish")
-    public ResponseEntity publish(@RequestBody final DomainEvent message) throws ExecutionException, InterruptedException {
-        this.domainEventProducer.sendMessage(message)
-                .thenRunAsync(() -> log.info("[#] message sent")).get();
+    public ResponseEntity publish(@RequestBody final DomainEvent message) {
+        this.domainEventProducer.sendMessage(message).thenRunAsync(() -> log.info("[#] message sent"));
         return ResponseEntity.accepted().build();
     }
 }
