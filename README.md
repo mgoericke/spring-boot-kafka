@@ -1,6 +1,5 @@
-# Kafka
+# Kafka Stack with Spring Boot
 
-## Kafka Stack
 Add `127.0.0.1 kafka` to /etc/hosts file. 
 
 Start Kafka Stack
