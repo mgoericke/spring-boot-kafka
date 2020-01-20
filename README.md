@@ -2,7 +2,7 @@
 
 Add `127.0.0.1 kafka` to /etc/hosts file. 
 
-Start Kafka Stack
+Start Kafka Full Stack 
 ```
 docker-compose -f docker-compose-ui.yml up -d
 ```
@@ -14,6 +14,12 @@ docker-compose -f docker-compose-ui.yml up -d
 | Schema-Registry  | localhost:8001  |
 | Kafka-Topics UI  | localhost:8002  |
 | Schema-Registry UI  | localhost:8003  |
+
+or a simple Kafka Stack without ui and without schema registry
+
+```
+docker-compose -f docker-compose-simple.yml up -d
+```
 
 ## Producer
 
