@@ -18,7 +18,7 @@ docker-compose -f docker-compose-ui.yml up -d
 or a simple Kafka Stack without ui and without schema registry
 
 ```
-docker-compose -f docker-compose-simple.yml up -d
+docker-compose -f docker-compose.yml up -d
 ```
 
 ## Producer
