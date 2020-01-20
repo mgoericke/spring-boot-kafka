@@ -1,22 +1,5 @@
 # Kafka
 
-## when to use Consumer - Producer:
-
-* If there are single consumer , consume message process but not spill to other topic.
-* As point 1 if have just producer producing message the we don't need to Kafka Stream.
-* If consumer message from one Kafka cluster but publish to different Kafka cluster topic. In that case even you can use Kafka Stream but you have to use separate Producer to publish message tp different cluster. Or simply use Kafka Consumer - Producer mechanism.
-* Batch processing - if there is requirement to collect message or kind of batch processing its good to use normal traditional way.
-
-## when to use Kafka Stream:
-
-* If you consume message from one topic , transform and publish to other topic Kafka Stream is best suited.
-* Realtime processing, realtime analytic and Machine learning.
-* Stateful transformation such as aggregation, join, window etc.
-* Planning to use local state store or mounted store such as Portworx etc.
-* Achieve Exactly one processing semantic and auto defined fault tolerance.
-
-# Examples
-
 ## Kafka Stack
 Add `127.0.0.1 kafka` to /etc/hosts file. 
 
@@ -72,10 +55,22 @@ java -jar target/*jar --spring.profiles.active="consumer" --server.port=8081
 
 check the logfile for `message received ..` log entries
 
+# Kafka consumer/producer vs Kafka Stream 
 
+## when to use Consumer - Producer:
 
+* If there are single consumer , consume message process but not spill to other topic.
+* As point 1 if have just producer producing message the we don't need to Kafka Stream.
+* If consumer message from one Kafka cluster but publish to different Kafka cluster topic. In that case even you can use Kafka Stream but you have to use separate Producer to publish message tp different cluster. Or simply use Kafka Consumer - Producer mechanism.
+* Batch processing - if there is requirement to collect message or kind of batch processing its good to use normal traditional way.
 
+## when to use Kafka Stream:
 
+* If you consume message from one topic , transform and publish to other topic Kafka Stream is best suited.
+* Realtime processing, realtime analytic and Machine learning.
+* Stateful transformation such as aggregation, join, window etc.
+* Planning to use local state store or mounted store such as Portworx etc.
+* Achieve Exactly one processing semantic and auto defined fault tolerance.
 
 
 
