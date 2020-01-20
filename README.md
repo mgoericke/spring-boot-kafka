@@ -35,6 +35,12 @@ docker-compose -f docker-compose-ui.yml up -d
 
 ## Producer
 
+### Build the jar file
+
+```
+mvn clean package
+```
+
 ### Start the producer 
 
 * spring profile "producer"
@@ -47,10 +53,11 @@ java -jar target/*jar --spring.profiles.active="producer" --server.port=8080
 ### publish messages 
 
 
-(example users httpie)
+(example uses httpie)
 ```
 echo '{"id":1, "body": "just a message"}' | http POST :8080/publish
 ```
+check the logfile for `message sent ..` log entries
 
 ## Consumer
 
@@ -62,6 +69,8 @@ Start the consumer
 ```
 java -jar target/*jar --spring.profiles.active="consumer" --server.port=8081
 ```
+
+check the logfile for `message received ..` log entries
 
 
 
